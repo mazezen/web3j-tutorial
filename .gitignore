@@ -5,6 +5,8 @@ target/
 .kotlin
 web3j-examples/target
 web3j-examples/.mvn
+web3j-deployERC20Contract/target
+web3j-deployERC20Contract/.mvn
 
 ### IntelliJ IDEA ###
 .idea
@@ -12,6 +14,7 @@ web3j-examples/.mvn
 *.iml
 *.ipr
 web3j-examples/.idea
+web3j-deployERC20Contract/.idea
 
 
 ### Eclipse ###

@@ -1,8 +1,10 @@
 # Web3j-Tutorial
-> <a href="https://docs.web3j.io/4.14.0">Web3j4.14.0</a> 使用案例教程. 本实例代码,连接是本地虚拟机中的节点模拟器.
+> <a href="https://docs.web3j.io/4.14.0">Web3j 版本 4.14.0</a>
+>
+> 实例代码,连接是本地虚拟机中的节点模拟器.
+>
 
-
-## web3j-examples
+## 一. web3j-examples
 > 示例
 * Web3ClientVersionClass 获取客户端版本
 * nowBlockNumber 最新区块高度
@@ -10,6 +12,39 @@
 * transferEIP1559 基于 EIP-1559 提案转账 Eth
 * getEthBalance 获取账户 Eth 余额 
 
+## 二. web3j-deployERC20Contract
+> 部署 ERC20 合约 Leaf Token
+1. 安装 <a href="https://docs.soliditylang.org/en/latest/installing-solidity.html#macos-packages">solidity编译器</a> (Mac brew)
+```shell
+brew update
+brew upgrade
+brew tap ethereum/ethereum
+brew install solidity
+```
+查看 solc 版本
+```shell
+solc --version
+```
+2. 编译 LeafERC20 合约.获取合约的字节码和 ABI。
+```shell
+$ solc --optimize --bin --abi LeafERC20.sol --evm-version paris -o output
+Compiler run successful. Artifact(s) can be found in directory "output".
+```
+这个命令会生成两个文件,位于 output目录下：
+* Leaf.bin：包含了合约的字节码。
+* Leaf.abi：包含了合约的 ABI（用于与合约交互的接口）。
+
+3. 使用 Web3j Command Line Tools 根据 ABI 文件生成 Java 类
+```shell
+web3j generate solidity -b Leaf.bin -a Leaf.abi -o ./src/main/java -p com.mazezen.github
+```
+4. 运行 DeployLeafToken 完成合约部署
+
+# 前置条件
+## 安装 Web3j command cli
+```shell
+curl -L get.web3j.io | sh && source ~/.web3j/source.sh
+```
 
 ## 安装本地节点模拟器.
 > 通过 VMware Fusion 安装的 Ubuntu24.04.3
