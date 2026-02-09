@@ -4,7 +4,7 @@
 > 实例代码,连接是本地虚拟机中的节点模拟器.
 >
 
-## 一. web3j-examples
+## 一 web3j-examples
 > 示例
 * Web3ClientVersionClass 获取客户端版本
 * nowBlockNumber 最新区块高度
@@ -12,7 +12,7 @@
 * transferEIP1559 基于 EIP-1559 提案转账 Eth
 * getEthBalance 获取账户 Eth 余额 
 
-## 二. web3j-deployERC20Contract
+## 二 web3j-deployERC20Contract
 > 部署 ERC20 合约 Leaf Token
 1. 安装 <a href="https://docs.soliditylang.org/en/latest/installing-solidity.html#macos-packages">solidity编译器</a> (Mac brew)
 ```shell
@@ -39,6 +39,29 @@ Compiler run successful. Artifact(s) can be found in directory "output".
 web3j generate solidity -b Leaf.bin -a Leaf.abi -o ./src/main/java -p com.mazezen.github
 ```
 4. 运行 DeployLeafToken 完成合约部署
+
+## 三 web3j-DeFi
+> ERC20授权代理转账流程（Approve & TransferFrom Pattern）
+* Approve：代币持有者授权另一个地址（代理/平台）代表自己使用一定数量的代币
+* TransferFrom：代理地址代表代币持有者发起实际的转账操作，把代币转给第三方
+
+1. 给 sender 地址充值 LEAF
+* 部署合约账户（Deployer） 转账 100 LEAF 给 sender 地址（0xffcf8fdee...）
+* 作用：让 sender 拥有代币余额，才能执行后续操作
+
+2. sender 地址调用 approve 授权
+* sender 地址调用 approve(platform, 100 LEAF)，授权 platform 账户可以代表它最多使用 100 个 LEAF。
+* 作用：允许 platform 作为代理，帮 sender 操作最多 100 个代币。
+3. platform 调用 transferFrom 转账
+* platform 使用 transferFrom(sender, receiver, 100 LEAF)，把 sender 的 100 LEAF 转给 receiver。
+* 作用：通过代理身份，完成实际转账给第三方
+
+3. 每个地址的角色
+* deployer(代币部署者) - 部署合约及初始化代币账户  -   代币初始化供应持有者
+* sender  - 代币持有人 - 有余额,授权给platform 使用代币
+* platform - 代理账户 - 被授权,可以代表sender 转账代币给receiver 
+* receiver - 收款账户 - 终端收到代币的账户
+
 
 # 前置条件
 ## 安装 Web3j command cli

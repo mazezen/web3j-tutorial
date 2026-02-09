@@ -7,6 +7,8 @@ web3j-examples/target
 web3j-examples/.mvn
 web3j-deployERC20Contract/target
 web3j-deployERC20Contract/.mvn
+web3j-DeFi/target
+web3j-DeFi/.mvn
 
 ### IntelliJ IDEA ###
 .idea
@@ -15,6 +17,7 @@ web3j-deployERC20Contract/.mvn
 *.ipr
 web3j-examples/.idea
 web3j-deployERC20Contract/.idea
+web3j-DeFi/.idea
 
 
 ### Eclipse ###
