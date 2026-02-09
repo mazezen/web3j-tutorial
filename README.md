@@ -62,6 +62,11 @@ web3j generate solidity -b Leaf.bin -a Leaf.abi -o ./src/main/java -p com.mazeze
 * platform - 代理账户 - 被授权,可以代表sender 转账代币给receiver 
 * receiver - 收款账户 - 终端收到代币的账户
 
+## 四 web3j-monitorScan
+> 监听. 监听地址发生交易触发
+
+## 五 web3j-monitorScanErc20
+> 多合约监听. 监听地址发生ERC20合约交易触发
 
 # 前置条件
 ## 安装 Web3j command cli
